@@ -10,9 +10,9 @@ const mockSignOut = jest.fn();
 const mockUseEmulator = jest.fn();
 
 class FakeAuth {
-  constructor(currentUser = {}) {
-    currentUser.sendEmailVerification = mockSendVerificationEmail;
-    this.currentUserRecord = currentUser;
+  constructor(_currentUser = {}) {
+    _currentUser.sendEmailVerification = mockSendVerificationEmail;
+    this.currentUserRecord = _currentUser;
   }
 
   createUserWithEmailAndPassword() {
@@ -57,7 +57,7 @@ class FakeAuth {
   }
 
   get currentUser() {
-    const { uid, ...data } = this.currentUser;
+    const { uid, ...data } = this._currentUser;
     return { uid, data };
   }
 }
